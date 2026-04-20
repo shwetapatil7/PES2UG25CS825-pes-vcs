@@ -16,8 +16,12 @@ object_write: Builds a header (blob/tree/commit <size>\0), combines it with data
 object_read: Reads object file, verifies integrity by recomputing hash, parses type from header, returns data portion.
 
 **📸 Screenshot 1A:** Output of `./test_objects` showing all tests passing.
+<img width="944" height="94" alt="image" src="https://github.com/user-attachments/assets/01bb81fd-c783-4f4a-b172-b67e4880582b" />
+
 
 **📸 Screenshot 1B:** `find .pes/objects -type f` showing the sharded directory structure.
+<img width="943" height="160" alt="image" src="https://github.com/user-attachments/assets/a84110cc-b7f1-4346-95b3-bc2053bd2c83" />
+
 
 ---
 
@@ -27,8 +31,11 @@ What I implemented
 tree_from_index: Loads the index, builds a Tree struct from staged entries, serializes it to binary format and writes it to the object store.
 
 **📸 Screenshot 2A:** Output of `./test_tree` showing all tests passing.
+<img width="946" height="146" alt="image" src="https://github.com/user-attachments/assets/d990791b-ab46-4b8c-8402-5a775deb9958" />
+
 
 **📸 Screenshot 2B:** Pick a tree object from `find .pes/objects -type f` and run `xxd .pes/objects/XX/YYY... | head -20` to show the raw binary format.
+<img width="940" height="77" alt="image" src="https://github.com/user-attachments/assets/4312b91f-2a9a-46eb-b8b3-9d1a1a5f203c" />
 
 ---
 
@@ -41,8 +48,11 @@ index_save: Sorts entries by path, writes to temp file atomically using fsync + 
 index_add: Reads file contents, writes blob to object store, gets metadata via stat(), updates or adds index entry.
 
 **📸 Screenshot 3A:** Run `./pes init`, `./pes add file1.txt file2.txt`, `./pes status` — show the output.
+<img width="944" height="202" alt="image" src="https://github.com/user-attachments/assets/be46dbca-9beb-4852-9cce-3a0239355a57" />
+
 
 **📸 Screenshot 3B:** `cat .pes/index` showing the text-format index with your entries.
+<img width="944" height="61" alt="image" src="https://github.com/user-attachments/assets/809711b7-09ea-4eb4-8385-6ac9b7488960" />
 
 ---
 
@@ -51,10 +61,16 @@ index_add: Reads file contents, writes blob to object store, gets metadata via s
 What I implemented
 commit_create: Builds tree from index, reads parent from HEAD (if exists), sets author/timestamp/message, serializes commit, writes to object store, updates HEAD.
 **📸 Screenshot 4A:** Output of `./pes log` showing three commits with hashes, authors, timestamps, and messages.
+<img width="940" height="586" alt="image" src="https://github.com/user-attachments/assets/71444272-6a88-4d85-ac04-9ed6a5c89d1e" />
+
 
 **📸 Screenshot 4B:** `find .pes -type f | sort` showing object store growth after three commits.
+<img width="946" height="208" alt="image" src="https://github.com/user-attachments/assets/c6790ef1-3a2a-4586-8e13-91a6b7bb5478" />
+
 
 **📸 Screenshot 4C:** `cat .pes/refs/heads/main` and `cat .pes/HEAD` showing the reference chain.
+<img width="944" height="46" alt="image" src="https://github.com/user-attachments/assets/9c156501-bdba-4fda-90b7-25b04756a897" />
+
 
 ---
 
