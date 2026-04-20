@@ -23,7 +23,6 @@ object_read: Reads object file, verifies integrity by recomputing hash, parses t
 
 ## Phase 2: Tree Objects
 
-Phase 2: Tree Objects
 What I implemented
 tree_from_index: Loads the index, builds a Tree struct from staged entries, serializes it to binary format and writes it to the object store.
 
@@ -35,7 +34,7 @@ tree_from_index: Loads the index, builds a Tree struct from staged entries, seri
 
 ## Phase 3: The Index (Staging Area)
 
-Phase 3: Index (Staging Area)
+
 What I implemented
 index_load: Opens .pes/index, reads each line parsing mode, hash, mtime, size and path. If file doesn't exist, initializes empty index.
 index_save: Sorts entries by path, writes to temp file atomically using fsync + rename.
@@ -49,7 +48,6 @@ index_add: Reads file contents, writes blob to object store, gets metadata via s
 
 ## Phase 4: Commits and History
 
-Phase 4: Commits and History
 What I implemented
 commit_create: Builds tree from index, reads parent from HEAD (if exists), sets author/timestamp/message, serializes commit, writes to object store, updates HEAD.
 **📸 Screenshot 4A:** Output of `./pes log` showing three commits with hashes, authors, timestamps, and messages.
@@ -62,7 +60,7 @@ commit_create: Builds tree from index, reads parent from HEAD (if exists), sets 
 
 ## Phase 5 & 6: Analysis-Only Questions
 
-Phase 5: Branching Analysis
+
 Q5.1 — How would pes checkout work?
 To implement pes checkout <branch>, the following changes are needed in .pes/:
 
