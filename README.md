@@ -11,6 +11,7 @@ ______________________________________________________________________________
 
 
 Phase 1: Object Storage
+
 What I implemented
 object_write: Builds a header (blob/tree/commit <size>\0), combines it with data, computes SHA-256 hash, writes atomically using temp file + rename, shards into .pes/objects/XX/ directories.
 object_read: Reads object file, verifies integrity by recomputing hash, parses type from header, returns data portion.
